@@ -78,7 +78,7 @@ js:
     src: webcache|mathjax@3.2.2/es5/tex-mml-chtml.js
     integrity: sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei
   aplayer:
-    src: webcache|aplayer@1.10.1/dist/APlayer.min.js
+    src: local|aplayer@1.10.1/dist/APlayer.min.js
     integrity: sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL/aORyw+5+HZoU6e
   pangu:
     src: webcache|pangu@4.0.7/dist/browser/pangu.min.js
@@ -128,8 +128,8 @@ css:
       - src: webcache|@fortawesome/fontawesome-free@7.1.0/css/v4-font-face.min.css
         integrity: sha384-UlkrhOIvZxJFd4MElSUp7ow6/RUeYKi/orfCZIRRiOENFuQPIAA3T3HjYfmBRhNq
   aos:
-    src: webcache|@reimujs/aos@0.1.2/dist/aos.css
+    src: local|@reimujs/aos@0.1.2/dist/aos.css
     integrity: sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa
   aplayer:
-    src: webcache|aplayer@1.10.1/dist/APlayer.min.css
+    src: local|aplayer@1.10.1/dist/APlayer.min.css
     integrity: sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh

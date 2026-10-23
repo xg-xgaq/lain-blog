@@ -55,10 +55,8 @@ banner: "images/banner.jpg"
 
 # If you want to use the srcset attribute, please enable it
 banner_srcset:
-  enable: false
+  enable: true
   srcset:
-    - src: "images/banner-600w.jpg"
-      media: "(max-width: 479px)"
     - src: "images/banner-800w.jpg"
       media: "(max-width: 799px)"
     - src: "images/banner.jpg"
@@ -654,7 +652,7 @@ pace:
 # Experimental
 # Please turn on pjax to use this feature
 player:
-  disable_on_mobile: true # 启用移动端播放
+  disable_on_mobile: false # 手机端也显示播放器
   position: after_widget # 调整位置
   # if you enable meting, you must enable aplayer first
   aplayer: 

@@ -115,3 +115,36 @@ body .aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap,
 .aplayer-list-author {
   color: var(--grey-7) !important;
 }
+
+@media screen and (max-width: 768px) {
+  .aplayer.aplayer-fixed,
+  .aplayer.aplayer-fixed.aplayer-narrow {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+    width: auto !important;
+    max-width: 420px !important;
+    border-radius: 12px !important;
+  }
+
+  .aplayer.aplayer-fixed .aplayer-body {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+    width: auto !important;
+    max-width: 420px !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+  }
+
+  .aplayer.aplayer-fixed .aplayer-list {
+    max-height: 40vh !important;
+    border-radius: 12px !important;
+    overflow-y: auto;
+  }
+
+  body {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  }
+}
