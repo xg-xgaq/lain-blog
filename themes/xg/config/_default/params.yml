@@ -661,7 +661,57 @@ player:
     # https://github.com/DIYgod/APlayer
     enable: true # 启用 APlayer
     options:
-      audio: []
+      audio:
+        - name: "ハッピーシンセサイザ"
+          artist: "EasyPop・巡音ルカ・GUMI"
+          url: "/music/happy-synthesizer.mp3"
+          cover: "/music/covers/happy-synthesizer.jpg"
+        - name: "鳥の詩"
+          artist: "Lia"
+          url: "/music/tori-no-uta.mp3"
+          cover: "/music/covers/tori-no-uta.jpg"
+        - name: "Cry For Me (feat. Ami)"
+          artist: "Michita"
+          url: "/music/cry-for-me.mp3"
+        - name: "だんご大家族"
+          artist: "茶太"
+          url: "/music/dango-daikazoku.mp3"
+          cover: "/music/covers/dango-daikazoku.jpg"
+        - name: "君のままで"
+          artist: "azusa"
+          url: "/music/kimi-no-mama-de.mp3"
+          cover: "/music/covers/kimi-no-mama-de.jpg"
+        - name: "minamo"
+          artist: "ゆかな"
+          url: "/music/minamo.mp3"
+        - name: "God knows..."
+          artist: "平野綾"
+          url: "/music/god-knows.mp3"
+          cover: "/music/covers/god-knows.jpg"
+        - name: "WHITE ALBUM"
+          artist: "平野綾"
+          url: "/music/white-album.mp3"
+          cover: "/music/covers/white-album.jpg"
+        - name: "潮鳴り"
+          artist: "折戸伸治"
+          url: "/music/shio-nari.mp3"
+          cover: "/music/covers/shio-nari.jpg"
+        - name: "羽根"
+          artist: "折戸伸治"
+          url: "/music/hane.mp3"
+          cover: "/music/covers/hane.jpg"
+        - name: "打上花火"
+          artist: "米津玄師・Daoko"
+          url: "/music/uchiage-hanabi.mp3"
+          cover: "/music/covers/uchiage-hanabi.jpg"
+        - name: "WHITE ALBUM (Live)"
+          artist: "米澤円"
+          url: "/music/white-album-live.mp3"
+          cover: "/music/covers/white-album-live.jpg"
+        - name: "secret base ～君がくれたもの～"
+          artist: "茅野愛衣・戸松遥・早見沙織"
+          url: "/music/secret-base.mp3"
+          cover: "/music/covers/secret-base.jpg"
       fixed: true
       autoplay: false # 关闭自动播放，避免打扰用户
       loop: all
@@ -670,11 +720,11 @@ player:
       volume: 0.5
       mutex: true
       listFolded: true
-      lrcType: 3
+      lrcType: 0
   meting:
     # https://github.com/metowolf/MetingJS
     # if you want to use meting, please enable aplayer first
-    enable: true # 启用 MetingJS
+    enable: false # 使用本地音乐列表，不再拉取网易云歌单
     meting_api: "https://api.injahow.cn/meting/?server=:server&type=:type&id=:id"
     options:
       id: 3778678 # 网易云音乐热歌榜歌单
