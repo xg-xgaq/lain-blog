@@ -417,6 +417,7 @@
             }
           }
         }
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
         new APlayer({
             theme: "var(--color-link)",
             container: document.getElementById('aplayer'),
