@@ -1,0 +1,7 @@
+{{- define "main" -}}
+  {{- $paginator := .Paginate .Pages -}}
+  {{- range $k, $v := $paginator.Pages -}}
+    {{- partial "post.html" (dict "index" $k "ctx" $ "page" $v) -}}
+  {{- end -}}
+  {{- partial "pagination.html" . -}}
+{{- end -}}

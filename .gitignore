@@ -1,0 +1,13 @@
+# Hugo 构建产物（不要提交，Cloudflare 会自己构建）
+/public/
+/resources/
+/.hugo_build.lock
+
+# 临时测试文件
+a.bin
+p.json
+first_url.txt
+
+# 系统文件
+.DS_Store
+Thumbs.db
