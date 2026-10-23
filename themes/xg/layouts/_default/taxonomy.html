@@ -1,0 +1,119 @@
+{{- define "main" -}}
+  {{- $type := .Type -}}
+
+  {{- $sort_config := "date-reverse" -}}
+  {{- if eq $type "categories" -}}
+    {{- $sort_config = .Site.Params.sort_order.taxonomy.category -}}
+  {{- else if eq $type "tags" -}}
+    {{- $sort_config = .Site.Params.sort_order.taxonomy.tag -}}
+  {{- end -}}
+
+  {{- $pageSize := 0 -}}
+  {{- with $.Site.Params.paginate.archive -}}
+    {{- $pageSize = . -}}
+  {{- end -}}
+  {{- $paginator := "" -}}
+  {{- if gt $pageSize 0 -}}
+    {{- $paginator = .Paginate .Pages $pageSize -}}
+  {{- else -}}
+    {{- $paginator = .Paginate .Pages -}}
+  {{- end -}}
+  
+  {{- /* 先过滤掉日期为 0001 年的文章 */ -}}
+  {{- $filteredPages := where $paginator.Pages "Date.Year" "ne" 1 -}}
+  {{- $sortedPages := $filteredPages.GroupByDate .Site.Params.yearFormat "desc" -}}
+  {{- if eq $sort_config "weight" -}}
+    {{- $sortedPages = $filteredPages.ByWeight -}}
+  {{- else if eq $sort_config "weight-reverse" -}}
+    {{- $sortedPages = $filteredPages.ByWeight.Reverse -}}
+  {{- else if eq $sort_config "date" -}}
+    {{- $sortedPages = $filteredPages.GroupByDate .Site.Params.yearFormat "asc" -}}
+  {{- else if eq $sort_config "default" -}}
+    {{- $sortedPages = $filteredPages -}}
+  {{- end -}}
+  <div
+    class="archives-outer-wrap"
+    data-aos="{{ .Site.Params.animation.options.archive.whole }}"
+  >
+    {{- if eq .Title "落子无悔" -}}
+      <div style="text-align: center; margin-bottom: 20px;">
+        <a href="/post/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html" class="btn" style="display: inline-block; padding: 10px 20px; background-color: #00BFFF; color: white; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
+          查看思维导图
+        </a>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 10px;">
+        <div style="text-align: center;">
+          <div style="font-size: 24px; font-weight: bold; color: #00BFFF;">{{ len .Pages }}</div>
+          <div style="font-size: 14px; color: #666;">文章总数</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 24px; font-weight: bold; color: #00BFFF;">
+            {{- $totalWords := 0 -}}
+            {{- range .Pages -}}
+              {{- $totalWords = add $totalWords .WordCount -}}
+            {{- end -}}
+            {{- if gt $totalWords 1000 -}}
+              {{- printf "%.1fk" (div $totalWords 1000.0) -}}
+            {{- else -}}
+              {{- $totalWords -}}
+            {{- end -}}
+          </div>
+          <div style="font-size: 14px; color: #666;">总字数</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 24px; font-weight: bold; color: #00BFFF;">
+            {{- $totalTime := 0 -}}
+            {{- range .Pages -}}
+              {{- $totalTime = add $totalTime .ReadingTime -}}
+            {{- end -}}
+            {{- $hours := div $totalTime 60 -}}
+            {{- $minutes := mod $totalTime 60 -}}
+            {{- if gt $hours 0 -}}
+              {{- printf "%dh%dm" $hours $minutes -}}
+            {{- else -}}
+              {{- printf "%dm" $minutes -}}
+            {{- end -}}
+          </div>
+          <div style="font-size: 14px; color: #666;">阅读时长</div>
+        </div>
+      </div>
+      <div style="margin-bottom: 20px; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+        <h3 style="margin-top: 0; color: #333; font-size: 18px; margin-bottom: 15px;">📚 相关分类</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          {{- range .Site.Taxonomies.categories -}}
+            {{- if ne .Page.Title "落子无悔" -}}
+              <a href="{{ .Page.RelPermalink }}" style="display: inline-block; padding: 8px 16px; background-color: #fff; color: #333; border-radius: 20px; text-decoration: none; border: 1px solid #ddd; transition: all 0.3s;">
+                {{ .Page.Title }} ({{ len .Pages }})
+              </a>
+            {{- end -}}
+          {{- end -}}
+        </div>
+      </div>
+      {{- /* 自定义文章列表显示 */ -}}
+      {{- $filteredPages := where .Pages "Date.Year" "ne" 1 -}}
+      {{- if $filteredPages -}}
+        <section style="margin-bottom: 30px;">
+          <h2 style="font-size: 28px; font-weight: bold; color: #333; margin-bottom: 10px; border-left: 4px solid #ff5252; padding-left: 10px;">2026</h2>
+          <ul style="list-style: none; padding-left: 14px;">
+            {{- range $filteredPages -}}
+              <li style="margin-bottom: 8px; padding: 5px 0;">
+                <span style="color: #999; margin-right: 15px;">{{ .Date.Format "2006-01" }}</span>
+                <span style="color: #333;">{{ .Title }}</span>
+              </li>
+            {{- end -}}
+          </ul>
+        </section>
+      {{- end -}}
+    {{- else -}}
+    {{- if .Site.Params.only_show_capsule_in_index -}}
+      {{- if eq .Paginator.PageNumber 1 -}}
+        {{- partialCached "archives.html" . -}}
+      {{- end -}}
+    {{- else -}}
+      {{- partialCached "archives.html" . -}}
+    {{- end -}}
+    {{- partial "list.html" (dict "paginator" $sortedPages "ctx" .) -}}
+    {{- end -}}
+  </div>
+  {{- partial "pagination.html" . -}}
+{{- end -}}
