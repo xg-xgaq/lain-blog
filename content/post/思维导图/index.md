@@ -18,4 +18,4 @@ tags: []
 思维导图
 <!--more-->
 
-![思维导图图片](/images/swdt.png)
+{{< image-slices base="/images/swdt/slice" count="8" width="1280" height="1467" lastHeight="1464" alt="思维导图图片" >}}

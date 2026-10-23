@@ -203,6 +203,23 @@
     animation: blur 0.8s ease-in-out forwards;
   }
 
+  .img-slices {
+    margin: 0 auto;
+    line-height: 0;
+    border-radius: $post-radius;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+    }
+
+    img.lazyloaded {
+      animation: none;
+    }
+  }
+
   iframe {
     border: none;
     border-radius: $post-radius;

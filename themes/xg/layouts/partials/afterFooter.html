@@ -418,7 +418,7 @@
           }
         }
         const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        new APlayer({
+        const player = new APlayer({
             theme: "var(--color-link)",
             container: document.getElementById('aplayer'),
             audio: JSON.parse({{ $params.player.aplayer.options.audio | jsonify }}) || [],
@@ -426,12 +426,16 @@
             autoplay: {{ $params.player.aplayer.options.autoplay }} || false,
             loop: '{{ $params.player.aplayer.options.loop }}' || 'all',
             order: '{{ $params.player.aplayer.options.order }}' || 'list',
-            preload: '{{ $params.player.aplayer.options.preload }}' || 'auto',
+            preload: isMobile ? 'metadata' : ('{{ $params.player.aplayer.options.preload }}' || 'auto'),
             volume: {{ $params.player.aplayer.options.volume }} || 0.7,
             mutex: {{ $params.player.aplayer.options.mutex }} || true,
-            listFolded: {{ $params.player.aplayer.options.listFolded }} || false,
+            listFolded: isMobile ? true : ({{ $params.player.aplayer.options.listFolded }} || false),
+            listMaxHeight: isMobile ? '40vh' : undefined,
             lrcType: {{ $params.player.aplayer.options.lrcType }} || 0,
         });
+        if (isMobile) {
+          player.setMode('normal');
+        }
       }
     }
     </script>

@@ -1,0 +1,12 @@
+{{- $base := .Get "base" | relURL -}}
+{{- $count := int (.Get "count") -}}
+{{- $width := int (.Get "width") -}}
+{{- $height := int (.Get "height") -}}
+{{- $lastHeight := int (.Get "lastHeight") -}}
+{{- $alt := .Get "alt" | default "" -}}
+<div class="img-slices">
+  {{- range $i := seq 1 $count }}
+  {{- $h := cond (eq $i $count) $lastHeight $height }}
+  <img src="{{ printf "%s-%02d.webp" $base $i }}" width="{{ $width }}" height="{{ $h }}" alt="{{ if eq $i 1 }}{{ $alt }}{{ end }}" decoding="async">
+  {{- end }}
+</div>
