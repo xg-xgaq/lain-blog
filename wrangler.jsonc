@@ -1,0 +1,8 @@
+{
+  "name": "lain-blog",
+  "compatibility_date": "2026-10-23",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}
