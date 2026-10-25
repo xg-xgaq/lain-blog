@@ -111,9 +111,9 @@ window.throttle = (func: (...args: any[]) => void, limit: number) => {
   themeButton.addEventListener(
     "click",
     throttle(() => {
-      const modes = ["auto", "false", "true"];
+      const modes = ["false", "true"];
       const nextMode =
-        modes[(modes.indexOf(localStorage.getItem("dark_mode")) + 1) % 3];
+        modes[(modes.indexOf(localStorage.getItem("dark_mode")) + 1) % modes.length];
       setTheme(nextMode);
     }, 1000),
   );
