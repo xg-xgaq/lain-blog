@@ -36,18 +36,13 @@
     data-aos="{{ .Site.Params.animation.options.archive.whole }}"
   >
     {{- if eq .Title "落子无悔" -}}
-      <div style="text-align: center; margin-bottom: 20px;">
-        <a href="/post/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html" class="btn" style="display: inline-block; padding: 10px 20px; background-color: #00BFFF; color: white; border-radius: 5px; text-decoration: none; transition: background-color 0.3s;">
-          查看思维导图
-        </a>
-      </div>
-      <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 10px;">
+      <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; padding: 15px; background-color: var(--color-code-background); border-radius: 10px;">
         <div style="text-align: center;">
-          <div style="font-size: 24px; font-weight: bold; color: #00BFFF;">{{ len .Pages }}</div>
-          <div style="font-size: 14px; color: #666;">文章总数</div>
+          <div style="font-size: 24px; font-weight: bold;" class="self-cat-accent">{{ len .Pages }}</div>
+          <div style="font-size: 14px; color: var(--color-default);">文章总数</div>
         </div>
         <div style="text-align: center;">
-          <div style="font-size: 24px; font-weight: bold; color: #00BFFF;">
+          <div style="font-size: 24px; font-weight: bold;" class="self-cat-accent">
             {{- $totalWords := 0 -}}
             {{- range .Pages -}}
               {{- $totalWords = add $totalWords .WordCount -}}
@@ -58,10 +53,10 @@
               {{- $totalWords -}}
             {{- end -}}
           </div>
-          <div style="font-size: 14px; color: #666;">总字数</div>
+          <div style="font-size: 14px; color: var(--color-default);">总字数</div>
         </div>
         <div style="text-align: center;">
-          <div style="font-size: 24px; font-weight: bold; color: #00BFFF;">
+          <div style="font-size: 24px; font-weight: bold;" class="self-cat-accent">
             {{- $totalTime := 0 -}}
             {{- range .Pages -}}
               {{- $totalTime = add $totalTime .ReadingTime -}}
@@ -74,15 +69,15 @@
               {{- printf "%dm" $minutes -}}
             {{- end -}}
           </div>
-          <div style="font-size: 14px; color: #666;">阅读时长</div>
+          <div style="font-size: 14px; color: var(--color-default);">阅读时长</div>
         </div>
       </div>
-      <div style="margin-bottom: 20px; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
-        <h3 style="margin-top: 0; color: #333; font-size: 18px; margin-bottom: 15px;">📚 相关分类</h3>
+      <div style="margin-bottom: 20px; padding: 20px; background-color: var(--color-code-background); border-radius: 10px;">
+        <h3 style="margin-top: 0; font-size: 18px; margin-bottom: 15px;" class="self-cat-accent">📚 相关分类</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
           {{- range .Site.Taxonomies.categories -}}
             {{- if ne .Page.Title "落子无悔" -}}
-              <a href="{{ .Page.RelPermalink }}" style="display: inline-block; padding: 8px 16px; background-color: #fff; color: #333; border-radius: 20px; text-decoration: none; border: 1px solid #ddd; transition: all 0.3s;">
+              <a href="{{ .Page.RelPermalink }}" class="self-cat-accent" style="display: inline-block; padding: 8px 16px; background-color: var(--color-wrap); border-radius: 20px; text-decoration: none; border: 1px solid var(--color-border); transition: all 0.3s;">
                 {{ .Page.Title }} ({{ len .Pages }})
               </a>
             {{- end -}}
@@ -93,12 +88,12 @@
       {{- $filteredPages := where .Pages "Date.Year" "ne" 1 -}}
       {{- if $filteredPages -}}
         <section style="margin-bottom: 30px;">
-          <h2 style="font-size: 28px; font-weight: bold; color: #333; margin-bottom: 10px; border-left: 4px solid #ff5252; padding-left: 10px;">2026</h2>
+          <h2 class="self-cat-accent" style="font-size: 28px; font-weight: bold; margin-bottom: 10px; border-left: 4px solid #ff5252; padding-left: 10px;">2026</h2>
           <ul style="list-style: none; padding-left: 14px;">
             {{- range $filteredPages -}}
               <li style="margin-bottom: 8px; padding: 5px 0;">
                 <span style="color: #999; margin-right: 15px;">{{ .Date.Format "2006-01" }}</span>
-                <span style="color: #333;">{{ .Title }}</span>
+                <span class="self-cat-accent">{{ .Title }}</span>
               </li>
             {{- end -}}
           </ul>

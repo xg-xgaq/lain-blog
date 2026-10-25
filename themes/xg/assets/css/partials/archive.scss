@@ -156,3 +156,11 @@
     font-weight: 700;
   }
 }
+
+.self-cat-accent {
+  color: var(--red-0);
+}
+
+[data-theme="dark"] .self-cat-accent {
+  color: var(--red-2);
+}
