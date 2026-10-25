@@ -112,8 +112,8 @@ if (window.Pjax) {
     return pjaxLinks;
   };
 }
-window.Pjax &&
-  new window.Pjax({
+const pjaxInstance = window.Pjax
+  ? new window.Pjax({
     selectors: [
       "#header>img",
       "#header>picture",
@@ -156,7 +156,38 @@ window.Pjax &&
       },
     },
     cacheBust: false,
-  });
+  })
+  : null;
+
+// Swapped-in links keep a stale data-pjax-state attribute but lose their
+// listeners, so the library never rebinds them and the next click falls back
+// to a full page load (which kills the music player). Catch those clicks at
+// document level; links the library did bind call preventDefault first.
+document.addEventListener("click", (event) => {
+  if (!pjaxInstance || event.defaultPrevented || event.button !== 0) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const anchor = (event.target as Element)?.closest?.(
+    "a[href]",
+  ) as HTMLAnchorElement | null;
+  if (!anchor) return;
+  if (anchor.target && anchor.target !== "_self") return;
+  if (anchor.hasAttribute("download")) return;
+  if (anchor.getAttribute("rel")?.includes("noopener")) return;
+  const href = anchor.getAttribute("href");
+  if (!href || /^(mailto:|tel:|javascript:|data:|vbscript:)/i.test(href)) {
+    return;
+  }
+  const url = new URL(anchor.href, window.location.href);
+  if (url.origin !== window.location.origin) return;
+  if (
+    url.pathname === window.location.pathname &&
+    (url.hash || anchor.href === window.location.href.split("#")[0] + "#")
+  ) {
+    return;
+  }
+  event.preventDefault();
+  pjaxInstance.loadUrl(anchor.href);
+});
 
 window.addEventListener("pjax:success", () => {
   _$$("script[data-pjax]").forEach((element) => {
