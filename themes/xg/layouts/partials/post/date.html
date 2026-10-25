@@ -1,3 +1,4 @@
+{{- if not .Date.IsZero -}}
 <div class="article-date">
   <span
     class="article-date-link icon-calendar"
@@ -21,3 +22,4 @@
     </span>
   {{- end -}}
 </div>
+{{- end -}}
