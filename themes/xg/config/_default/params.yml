@@ -30,7 +30,6 @@ timeFormat: "2006-01-02 15:04:05"
 defaultDate: 2026-01-01
 
 author: 鬼蕾•小鬼
-email: 
 description: "从零开始的白帽生涯..."
 # subtitle: ""
 subtitle:
@@ -118,7 +117,6 @@ sidebar:
     show_common: true # whether to show common sidebar, ignored on mobile devices
 
 social:
-  email: mailto:
   # github: https://github.com/yourname
   # google: https://plus.google.com/yourname
   # twitter: https://twitter.com/yourname
@@ -144,7 +142,7 @@ social:
   # discord: https://discordapp.com/users/yourname
   # steam: https://steamcommunity.com/id/yourname
   # weixin: 
-  # qq: 
+  # qq:
   # tiktok:
 
 widgets:
